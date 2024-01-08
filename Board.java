@@ -50,8 +50,29 @@ public class Board {
         }
         System.out.println();
     }
-    public boolean checkForWin(){ // FIXME
+    public boolean checkForWin(int player){
+        for(int x = 0; x<boardPieces.length; x++){
+            for(int y = 0; y<boardPieces[0].length; y++){
+                if(checkDirection(x,y,0,1,player)||checkDirection(x,y,1,0,player)||checkDirection(x,y,1,-1,player)||checkDirection(x,y,1,1,player)){
+                    return true;
+                }
+            }
+        }
         return false;
+    }
+
+    private boolean checkDirection(int row, int col, int rowDirection, int colDirection, int player) {
+        for (int i = 0; i < 5; i++) {
+            int newRow = row + i * rowDirection;
+            int newCol = col + i * colDirection;
+            if (!isValidPosition(newRow, newCol) || boardPieces[newRow][newCol] != player) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isValidPosition(int row, int col) {
+        return row >= 0 && row < boardPieces.length && col >= 0 && col < boardPieces[0].length;
     }
 
 }
