@@ -12,17 +12,19 @@ public class Main {
         int[] remainingMegaPiece = new int[2]; // yucky implementation
         remainingMegaPiece[0] = 1;
         remainingMegaPiece[1] = 1;
-        while(true){
+        while(true) {
             board.displayAll();
             System.out.println("Player: " + player + ":");
-            System.out.println("Use megapiece? (Y/N)?");
-            String isMegapiece = input.nextLine();
             Piece p;
+            String isMegapiece;
+            if (remainingMegaPiece[player - 1] != 0){
+                System.out.println("Use megapiece? (Y/N)?");
+                isMegapiece = input.nextLine();
+            }
+            else{
+                isMegapiece = "N";
+            }
             if(isMegapiece.equalsIgnoreCase("Y")){
-                if(remainingMegaPiece[player-1]==0){
-                    System.out.println("You have used up your megapiece D:");
-                    continue;
-                }
                 System.out.println("Enter the column you would like to place your megapiece at.");
                 String col = input.nextLine();
                 if(!isValidCol(col, true)){
