@@ -30,7 +30,7 @@ class Project(object):
 
     def run_java_class(self):
         try:
-            child = pexpect.spawn(f'java -cp {self.folder_path} {self.class_name}',logfile=my_logger,echo=False)
+            child = pexpect.spawn(f'java -cp {self.folder_path} {self.class_name}',logfile=my_logger,echo=False,timeout=2)
             self.runs = True
             #print out what it shows
 
@@ -103,7 +103,7 @@ class Project(object):
             child.expect("Player: 1:")
             child.sendline("4")
         except:
-            print("shit failed lao")
+            print("Failed test")
 
         try:
             child.expect("player: 1 has won!",timeout=2)

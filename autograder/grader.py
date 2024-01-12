@@ -1,4 +1,4 @@
-import os,zipfile
+import os,zipfile,Project
 
 
 def get_all_zips():
@@ -13,16 +13,7 @@ def unzip_file(file_path, extraction_path):
     with zipfile.ZipFile(file_path, 'r') as zip_ref:
         zip_ref.extractall(extraction_path)
 
-def check_submitted_right(file_path,zip_name):
-    #if theres .class files then create a new folder and put them all inside
-    all_fls = os.listdir("./projects_unzipped/")
-    for fl in all_fls:
-        if fl.endswith(".class"):
-            os.mkdir(f"./projects_unzipped/{zip_name}")
-            os.rename(f"./projects_unzipped/{fl}", f"./projects_unzipped/{zip_name}/{fl}")
-            return True
-
-
+ 
 
 #finish it so it reads the 
 
@@ -40,10 +31,18 @@ for zip in all_zips:
     print(f"[~] Unzipping {zip}")
     unzip_file(f"./projects/{zip}", "./projects_unzipped")
     print(f"[~] Unzipped! {zip}")
-    print(f"[~] Checking if {zip} was submitted correctly")
-    if check_submitted_right(f"./projects_unzipped/{zip}", zip):
-        print(f"[~] {zip} was submitted correctly")
-    else:
-        print(f"[!] {zip} was not submitted correctly, please check it and try again")
-        exit()
+
 input(f"Most if not all files Unzipped, Press enter to start Grading")
+
+drs = os.listdir("./projects_unzipped")
+#check if its a folder, if its not a folder then remove it
+for dr in drs:
+    if not os.path.isdir(f"./projects_unzipped/{dr}"):
+        drs.remove(dr)
+    if "__" in dr:
+        drs.remove(dr)
+for dr in drs:
+    fz = Project.Project(f"./projects_unzipped/{dr}")
+    fz.run_tests()
+    fz.print_outcomes()
+
