@@ -1,39 +1,25 @@
 public class Piece {
-    private int row;
-    private int col;
-    private int color; // 1 = X, 2 = O
+    // instance variables go here!
 
-    public Piece(int col, int color, Board board) { // set row bad!
-        this.col = col;
-        this.row = findRow(col, board);
-        this.color = color;
+    public Piece(int col, int color, Board board) { // constructor!
+
     }
 
-    private int findRow(int column, Board board) {
+    private int findRow(int column, Board board) { // given the state of the board, and a column, it returns the row
         int[][] boardPieces = board.getBoardPieces();
         if (this instanceof MegaPiece) {
-            for (int y = -1; y < boardPieces.length - 2; y++) {
-                if (boardPieces[y + 2][column - 1] != 0 || boardPieces[y + 2][column] != 0 || boardPieces[y + 2][column + 1] != 0) {
-                    return y;
-                }
-            }
-            return boardPieces.length - 2;
+            return 0;
         } else {
-            for (int y = -1; y < boardPieces.length - 1; y++) {
-                if (boardPieces[y + 1][col] != 0) {
-                    return y;
-                }
-            }
-            return boardPieces.length - 1;
+            return 0;
         }
     }
     public int getCol() {
-        return col;
-    }
+        return 0;
+    } //FIXME
     public int getRow() {
-        return row;
+        return 0;
     }
     public int getColor() {
-        return color;
+        return 0;
     }
 }
