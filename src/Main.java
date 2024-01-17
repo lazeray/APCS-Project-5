@@ -76,9 +76,13 @@ public class Main {
         return true;
     }
     static boolean isValidRow(Piece p) {
+        if (p instanceof MegaPiece && p.getRow() <= 0) {
+            return false;
+        }
         if (p.getRow() < 0) {
             return false;
         }
+
         return true;
     }
 }
