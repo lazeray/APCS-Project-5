@@ -3,8 +3,8 @@ public class Main {
     static final int BOARDX = 7;
     static final int BOARDY = 15;
     public static void main(String[] args) {
-        System.out.println("Welcome to MEGA CONNECT 5!");
-        System.out.println("You may choose to place one 3x3 megapiece");
+        System.out.println("Welcome to MEGA Connect 5!");
+        System.out.println("You may choose to place one 3x3 MegaPiece");
         System.out.println();
         Board board = new Board(BOARDX, BOARDY);
         Scanner input = new Scanner(System.in); //creates scanner obj
@@ -18,40 +18,40 @@ public class Main {
             Piece p;
             String isMegapiece;
             if (remainingMegaPiece[player - 1] != 0) {
-                System.out.println("Use megapiece? (Y/N)?");
+                System.out.println("Use MegaPiece? (Y/N)?");
                 isMegapiece = input.nextLine();
             } else {
                 isMegapiece = "N";
             }
             if (isMegapiece.equalsIgnoreCase("Y")) {
-                System.out.println("Enter the column you would like to place your megapiece at.");
+                System.out.println("Enter the column you would like to place your MegaPiece at.");
                 String col = input.nextLine();
                 if (!isValidCol(col, true)) {
-                    System.out.println("Not a valid piece placement.");
+                    System.out.println("Not a valid placement.");
                     continue;
                 }
                 p = new MegaPiece(Integer.parseInt(col) - 1, player, board);
                 if (!isValidRow(p)) {
-                    System.out.println("Not a valid piece placement.");
+                    System.out.println("Not a valid placement.");
                     continue;
                 }
                 board.placePiece(p);
                 remainingMegaPiece[player - 1]--;
             } else if (isMegapiece.equalsIgnoreCase("N")) {
-                System.out.println("Enter the column you would like to place your piece at.");
+                System.out.println("Enter the column you would like to place your Piece at.");
                 String col = input.nextLine();
                 if (!isValidCol(col, false)) {
-                    System.out.println("Not a valid piece placement.");
+                    System.out.println("Not a valid placement.");
                     continue;
                 }
                 p = new Piece(Integer.parseInt(col) - 1, player, board);
                 if (!isValidRow(p)) {
-                    System.out.println("Not a valid piece placement.");
+                    System.out.println("Not a valid placement.");
                     continue;
                 }
                 board.placePiece(p);
             } else {
-                System.out.println("Please enter a valid answer");
+                System.out.println("Please enter a valid answer.");
                 continue;
             }
             if (board.checkForWin(player)) {

@@ -10,5 +10,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JUnit Dependencies" level="project" />
+    <orderEntry type="library" name="JUnit Dependencies1" level="project" />
   </component>
 </module>
